@@ -157,6 +157,13 @@ export default function Sudoku() {
   const progressCount = gameState ? gameState.puzzle.flat().filter(v => v !== 0).length : 0;
   const progress = Math.round((progressCount / 81) * 100);
 
+  // Count how many times each digit 1-9 appears in the current puzzle
+  const digitCounts = {};
+  if (gameState) {
+    for (let n = 1; n <= 9; n++) digitCounts[n] = 0;
+    gameState.puzzle.flat().forEach(v => { if (v > 0) digitCounts[v]++; });
+  }
+
   return (
     <div className="sdk-wrap">
       {/* Difficulty selector */}
@@ -331,16 +338,31 @@ export default function Sudoku() {
 
       {/* Numpad */}
       <div className="numpad">
-        {[1,2,3,4,5,6,7,8,9].map(n => (
-          <button
-            key={n}
-            className={`np-btn${selVal === n ? ' active' : ''}`}
-            onClick={() => handleNumber(n)}
-          >
-            <span className="np-num">{n}</span>
-            {selVal === n && <span className="np-glow" />}
-          </button>
-        ))}
+        {[1,2,3,4,5,6,7,8,9].map(n => {
+          const count = digitCounts[n] || 0;
+          const complete = count >= 9;
+          const remaining = 9 - count;
+          return (
+            <button
+              key={n}
+              className={`np-btn${selVal === n ? ' active' : ''}${complete ? ' complete' : ''}`}
+              onClick={() => !complete && handleNumber(n)}
+              disabled={complete}
+              title={complete ? `${n} fully placed` : `${remaining} remaining`}
+            >
+              <span className="np-num">{n}</span>
+              {!complete && <span className="np-remain">{remaining}</span>}
+              {complete && (
+                <span className="np-check">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              )}
+              {selVal === n && <span className="np-glow" />}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

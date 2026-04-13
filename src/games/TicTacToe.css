@@ -214,34 +214,42 @@
 .ttt-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   width: 100%;
   aspect-ratio: 1;
   background: var(--bg-card);
   border: 1px solid var(--bdr-m);
   border-radius: var(--r-xl);
-  overflow: hidden;
+  /* No overflow:hidden — it clips buttons in corner cells */
   box-shadow: var(--shadow-deep), inset 0 0 40px rgba(0,0,0,0.3);
   transition: opacity var(--tr);
 }
 .ttt-board.busy { opacity: 0.7; }
 
 .ttt-cell {
+  /* Stretch to fill the grid cell completely */
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
+  justify-self: stretch;
   position: relative;
   background: transparent;
   transition: background 0.15s ease;
   cursor: pointer;
-  /* Fix button baseline misalignment */
-  vertical-align: middle;
-  line-height: 0;
-  /* Constrain symbol via padding, not SVG overflow */
   padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 .ttt-cell.empty:hover:not(:disabled) {
   background: rgba(0,229,255,0.04);
 }
+
+/* Round the four corner cells to match the board radius */
+.ttt-cell:nth-child(1) { border-top-left-radius: var(--r-xl); }
+.ttt-cell:nth-child(3) { border-top-right-radius: var(--r-xl); }
+.ttt-cell:nth-child(7) { border-bottom-left-radius: var(--r-xl); }
+.ttt-cell:nth-child(9) { border-bottom-right-radius: var(--r-xl); }
 .cell-hover-hint {
   position: absolute;
   inset: 22%;
@@ -260,12 +268,13 @@
 
 /* Symbol wrapper — perfectly centered, sized as % of cell */
 .sym-wrap {
-  width: 58%;
-  height: 58%;
+  width: 52%;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  pointer-events: none;
 }
 
 /* SVG symbols */

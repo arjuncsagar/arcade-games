@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d453bcba-0d53-451e-90cc-2339286ecc84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/games/Sudoku.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/games/Sudoku.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/games/Sudoku.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/games/Sudoku.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/games/TicTacToe.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/games/TicTacToe.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1776055717437</updated>
       <workItem from="1776055718438" duration="609000" />
-      <workItem from="1776056338521" duration="1230000" />
+      <workItem from="1776056338521" duration="2524000" />
     </task>
     <servers />
   </component>
